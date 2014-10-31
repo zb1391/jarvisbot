@@ -18,9 +18,9 @@ Robut::Connection.configure do |config|
   # spam the channel, as described by the last bullet point on this
   # page: https://www.hipchat.com/help/category/xmpp
   config.jid = ENV['JID']
-  config.password = ['HIP_CHAT_PW']
+  config.password = ENV['HIP_CHAT_PW']
   config.nick = 'Jarvis Bot'
-  config.room = ['HIP_CHAT_ROOM']
+  config.room = ENV['HIP_CHAT_ROOM']
 
   # Custom @mention name
   config.mention_name = 'Jarvis'
