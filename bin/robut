@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+begin
+  require 'robut'
+rescue LoadError
+  require 'bundler/setup'
+  require 'robut'
+end
+require 'ostruct'
+require 'logger'
+
+load ARGV[0] || './Chatfile'
+
+Robut::Connection.new.connect
+loop { sleep 1 }

@@ -1,0 +1,77 @@
+PATH
+  remote: .
+  specs:
+    robut (0.5.2)
+      sinatra (~> 1.3)
+      xmpp4r (~> 0.5.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.2.6)
+    calc (1.0.0)
+    classifier (1.3.1)
+      stemmer (>= 1.0.0)
+    crack (0.1.8)
+    dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
+    google_custom_search_api (1.0.0)
+      addressable
+      httparty
+    google_search (1.2.0)
+      json
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
+    json (1.8.1)
+    meme_generator (1.9)
+      nokogiri (~> 1.4)
+    metaclass (0.0.1)
+    mini_portile (0.5.2)
+    mocha (0.14.0)
+      metaclass (~> 0.0.1)
+    multi_xml (0.5.5)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
+    rack (1.5.2)
+    rack-protection (1.5.1)
+      rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
+    rake (10.0.4)
+    simplecov (0.4.2)
+      simplecov-html (~> 0.4.4)
+    simplecov-html (0.4.5)
+    sinatra (1.4.4)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    stemmer (1.0.1)
+    tilt (1.4.1)
+    time-warp (1.0.8)
+    twss (0.0.5)
+      classifier (= 1.3.1)
+    webmock (1.6.4)
+      addressable (~> 2.2, > 2.2.5)
+      crack (>= 0.1.7)
+    xmpp4r (0.5.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  calc
+  dotenv-rails
+  google_custom_search_api
+  google_search
+  meme_generator
+  mocha
+  nokogiri
+  rack-test
+  rake
+  robut!
+  simplecov
+  time-warp
+  twss
+  webmock
