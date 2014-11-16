@@ -4,21 +4,23 @@ source "http://rubygems.org"
 gemspec
 gem 'rake'
 
-group :test do
-  gem 'simplecov'
-  gem 'webmock'
-  gem 'time-warp'
-  gem 'mocha'
-  gem 'rack-test'
-  gem 'google_search'
-end
-
 group :plugin do
+  gem 'pry'
   gem 'calc'
   gem 'twss'
   gem 'meme_generator'
   gem 'nokogiri'
-  gem 'google_search'
+  gem 'addressable', '~> 2.3.2'
+  gem 'google-api-client', '~> 0.7.1'
   gem 'google_custom_search_api'
   gem 'dotenv-rails'
+  gem 'unirest'
+  gem 'nokogiri'
+  gem 'rest-client'
+
+  # Image processing
+  gem 'rmagick', '2.13.2'
+
+  gem 'ruby-opencv' # need to install opencv on your machine to the default install dir
+                    # see the github page
 end

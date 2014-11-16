@@ -5,6 +5,8 @@ require 'robut/plugin/ping'
 require 'robut/plugin/meme'
 require 'robut/plugin/weather'
 require 'robut/plugin/image_searcher'
+require 'robut/plugin/emoticon_creator'
+
 # Add the plugin classes to the Robut plugin list.
 # Plugins are handled in the order that they appear in this array.
 Robut::Plugin.plugins << Robut::Plugin::TWSS
@@ -12,6 +14,7 @@ Robut::Plugin.plugins << Robut::Plugin::Ping
 Robut::Plugin.plugins << Robut::Plugin::Meme
 Robut::Plugin.plugins << Robut::Plugin::Weather
 Robut::Plugin.plugins << Robut::Plugin::ImageSearcher
+Robut::Plugin.plugins << Robut::Plugin::EmoticonCreator
 # Configure the robut jabber connection and you're good to go!
 Robut::Connection.configure do |config|
   # Note that the jid must end with /bot if you don't want robut to
