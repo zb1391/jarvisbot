@@ -17,7 +17,7 @@ HIP_CHAT_ROOM='XXXXX'         # Chat room
 EMAIL='XXXXX'                 # Email address of an admin 
 EMAIL_PASSWORD='XXXXX'        # Password of an admin
 CHATROOM_URL='XXXXX'          # URL of chatroom
-EMOTICON_FOLDER='#####'       # Directory where you want to store emoticons
+EMOTICON_FOLDER='XXXXX'       # Directory where you want to store emoticons
 ```
 
 ## Running
