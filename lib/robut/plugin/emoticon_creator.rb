@@ -17,7 +17,7 @@ class Robut::Plugin::EmoticonCreator
   
   def handle(time,sender_nick,message)
     if sent_to_me?(message) && check_words(message)
-      begin
+      # begin
         if words(message).length != 3
           reply("Wrong Input")
           reply("Emojify: <link> <shortcut>")
@@ -25,9 +25,10 @@ class Robut::Plugin::EmoticonCreator
           response = create_emoticon(CHATROOM,EMAIL,PASSWORD,words(message)[1],words(message)[2],EMOTICON_DIR)
           reply(response)
         end
-      rescue
-        reply("Something really bad happened")
-      end
+      # rescue Exception => ex
+      #   reply("Something really bad happened")
+      #   reply("#{ex.message}")
+      # end
     end 
   end
 

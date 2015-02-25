@@ -24,7 +24,7 @@ module Emojify
       return "Error: could not read link - make sure you provide a valid entry"
     end
     begin
-      smaller_size = CvSize.new(120,120)
+      smaller_size = create_ratio_cv_size(cvMat)
       smaller = cvMat.resize(smaller_size)
       image_path = "#{directory_path}/#{shortcut}.png"
       smaller.save_image(image_path)
@@ -33,6 +33,19 @@ module Emojify
     end
     upload(chatroom_url,email,password,shortcut,image_path)
   end
+
+  # shrink the cvMat
+  # max width is 120
+  # shink the smaller (width or height) to maintain a ratio 
+  def create_ratio_cv_size(cvMat)
+    rows = cvMat.height
+    cols = cvMat.width
+    if rows > cols
+      return CvSize.new((120*cols)/rows,120)
+    else
+      return CvSize.new(120,(120*rows)/cols)
+    end
+  end
   
   # Uploads the image to the chatroom
   # chatroom  - uri of chatroom (http://chatroom_name.hipchat.com)
@@ -40,9 +53,13 @@ module Emojify
   # password  - password of admin user
   # file_path - path to the image to upload
   def upload(chatroom_url,email,password,shortcut,file_path)
+    signin_get = RestClient.get('https://www.hipchat.com/sign_in')
+    signin_doc = Nokogiri::HTML(signin_get)
+    xsrf_token = signin_doc.css('input[name="xsrf_token"]').first.attributes["value"].value
+
     signin_response = RestClient.post('https://www.hipchat.com/sign_in', 
-	  email: email, 
-	  password: password){|response, request, result, &block| response}
+	  {email: email, password: password,d: nil,stay_signed_in: 1,signin: "Log+in",xsrf_token: xsrf_token},
+    {cookies: signin_get.cookies}){|response, request, result, &block| response}
     
     if signin_response.code != 302
       return "Error - could not sign in: please provide valid credentials"
@@ -57,13 +74,16 @@ module Emojify
     if get_request.code != 200
       return "Error - could not reach emoticons page. Make sure you provided the right chatroom_url"
     end
+
     # POST the progress - expect a 200 code
+    binding.pry
     progress = RestClient.post("#{chatroom_url}/admin/progress",
 						     {shortcut: shortcut, xsrf_token: xsrf_token},
-						     {:cookies => signin_response.cookies})
+						     {:cookies => signin_response.cookies}){|response, request, result, &block| response}
     if progress.code != 200
       return "Error - something broke when posting to progress - check with someone who knows what they are doing"
     end
+
     puts " POST Progress: #{progress.code}"
     
     # POST the emoticon - expect a 302 code

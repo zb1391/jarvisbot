@@ -22,10 +22,16 @@ class Robut::Plugin::ImageSearcher
   def handle(time,sender_nick,message)
     if sent_to_me?(message) && check_words(message)
       begin
-        results = GoogleCustomSearchApi.search(words(message)[2..-1].join(' '),{searchType: "image", num: 5})
-        reply(results["items"].sample["link"])
-      rescue
-        reply("Why would you search that? What is wrong with you?")
+        @results = GoogleCustomSearchApi.search(words(message)[2..-1].join(' '),{searchType: "image", num: 5})
+        reply(@results["items"].sample["link"])
+      rescue Exception => ex
+        if @results["error"] && @results["error"]["code"] == 500
+          reply("google can suck my balls. 500 server error")
+          reply("http://media.giphy.com/media/13TJrRNMTIn9G8/giphy.gif")
+        else
+          reply("@zacbrown your shitty code doesnt work")
+          reply("#{ex.message}")
+        end
       end
     end 
   end

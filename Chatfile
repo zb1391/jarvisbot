@@ -6,9 +6,11 @@ require 'robut/plugin/meme'
 require 'robut/plugin/weather'
 require 'robut/plugin/image_searcher'
 require 'robut/plugin/emoticon_creator'
+require 'robut/plugin/bees'
 
 # Add the plugin classes to the Robut plugin list.
 # Plugins are handled in the order that they appear in this array.
+Robut::Plugin.plugins << Robut::Plugin::Bees
 Robut::Plugin.plugins << Robut::Plugin::TWSS
 Robut::Plugin.plugins << Robut::Plugin::Ping
 Robut::Plugin.plugins << Robut::Plugin::Meme
@@ -23,7 +25,7 @@ Robut::Connection.configure do |config|
   config.jid = ENV['JID']
   config.password = ENV['HIP_CHAT_PW']
   config.nick = 'Jarvis Bot'
-  config.room = ENV['HIP_CHAT_ROOM']
+  config.rooms =[ ENV['HIP_CHAT_ROOM'], ENV['RPI_CHAT_ROOM'] ]
 
   # Custom @mention name
   config.mention_name = 'Jarvis'
