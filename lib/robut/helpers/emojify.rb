@@ -28,6 +28,7 @@ module Emojify
       smaller = cvMat.resize(smaller_size)
       image_path = "#{directory_path}/#{shortcut}.png"
       smaller.save_image(image_path)
+puts 'finished saving image'
     rescue
       return "Error: could not save file - maybe the directory you provided does not exist?"
     end
@@ -75,8 +76,9 @@ module Emojify
       return "Error - could not reach emoticons page. Make sure you provided the right chatroom_url"
     end
 
+    puts 'finished sigining in'
+
     # POST the progress - expect a 200 code
-    binding.pry
     progress = RestClient.post("#{chatroom_url}/admin/progress",
 						     {shortcut: shortcut, xsrf_token: xsrf_token},
 						     {:cookies => signin_response.cookies}){|response, request, result, &block| response}

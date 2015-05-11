@@ -22,6 +22,7 @@ class Robut::Plugin::EmoticonCreator
           reply("Wrong Input")
           reply("Emojify: <link> <shortcut>")
         else
+	  puts 'trying to create emojy'
           response = create_emoticon(CHATROOM,EMAIL,PASSWORD,words(message)[1],words(message)[2],EMOTICON_DIR)
           reply(response)
         end
